@@ -3,5 +3,36 @@ html
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/bootstrap-3.3.5-dist/css/bootstrap.css')
+    link(rel='stylesheet', href='/bootstrap-3.3.5-dist/css/bootstrap-theme.css')
   body
+  .navbar.navbar-inverse.navbar-fixed-top
+         .container
+          .navbar-header
+            .button(class="navbar-toggle.collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar")
+              .span(class="sr-only") Toggle navigation
+              .span(class="icon-bar")
+              .span(class="icon-bar")
+              .span(class="icon-bar")
+
+          .a.navbar-brand
+             a(href="/home") Album Collection
+          .ul.nav.navbar-nav.navbar-right
+             if(!username)
+              
+              li
+                a(href="/signin") Sign in
+              li
+                a(href="/register") Sign Up 
+             if(username)   
+              li
+                a(href="#") #{username}
+              li
+                a(href="/signout") Sign Out
+              li
+                a(href='/songs') Songs
+       
+            
+                
+          .container-theme-showcase
     block content

@@ -1,5 +1,29 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+
+
+  h1.well Welcome to Your Sweet Music Collection
+
+
+
+  button(type='submit')
+    a(href='/new') New Artist
+  button(type="submit") 
+    a(href="/songs") Songs
+
+  table.table.table-striped
+    thead
+       tr
+         th Artist
+         th Album
+
+    tbody
+      for artist in artists
+        tr
+          td
+            a(href='/'+artist._id+'/show')= artist.artist
+          td
+          td
+            button(type='submit' class='btn btn-success')
+                a(href='/'+ artist._id +'/addAlbum') Add Album

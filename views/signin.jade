@@ -1,0 +1,25 @@
+extends layout
+
+block content
+
+
+  h1.well Please Sign In
+
+  include error
+
+
+  form(action='/signin' method='post')
+   .form-group
+   .col-md-6
+    br
+    label Email
+    input.form-control(type='email' name='email')
+   .form-group
+   .col-md-6
+    br
+    label Password
+    input.form-control(type='password' name='password')
+   .form-group
+   .col-md-4
+    br
+    Button(type='submit' class='btn btn-success') Sign In

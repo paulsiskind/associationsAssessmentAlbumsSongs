@@ -1,0 +1,19 @@
+extends layout
+
+block content
+
+
+     h1.well The Magical Show Page
+
+       
+     h2.well= artist.artist
+
+     for albums in album
+      h2.well
+         a(href='/'+ albums._id +'/addSongs')= albums.album
+            for songs in song
+              p= songs.song
+      
+
+  
+     

@@ -1,0 +1,23 @@
+extends layout
+
+block content
+
+  button(type='submit')
+      a(href='/new') New Artist
+    button(type="submit") 
+      a(href="/songs") Songs
+
+    table.table.table-striped
+      thead
+         tr
+           th Songs
+           
+
+      tbody
+        for song in songs
+          tr
+            td
+              a(href='/'+song._id+'/show')= song.song
+            td
+            td 
+      

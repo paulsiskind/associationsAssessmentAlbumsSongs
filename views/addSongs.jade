@@ -1,0 +1,73 @@
+extends layout
+
+block content
+
+
+
+    h1.well= theAlbum.album
+
+     
+    for songs in song
+        p= songs.song
+
+    include error
+
+      
+    h2.well Add Songs
+          form(action='/'+theAlbum._id+'/addSongs', method='post')
+            .form-group
+              
+                br
+                label.small Add Track
+                input.form-control(type='text' name='song')
+            .form-group
+              
+                br
+                label.small Add Track
+                input.form-control(type='text' name='songTwo')
+            .form-group
+              
+                br
+                label.small Add Track
+                input.form-control(type='text' name='songThree')
+            .form-group
+              
+                br
+                label.small Add Track
+                input.form-control(type='text' name='songFour')
+            .form-group
+              
+                br
+                label.small Add Track
+                input.form-control(type='text' name='songFive')
+            .form-group
+              
+                br
+                label.small Add Track
+                input.form-control(type='text' name='songSix')
+            .form-group
+              
+                br
+                label.small Add Track
+                input.form-control(type='text' name='songSeven')
+            .form-group
+              
+                br
+                label.small Add Track
+                input.form-control(type='text' name='songEigth')
+            .form-group
+              
+                br
+                label.small Add Track
+                input.form-control(type='text' name='songNine')
+            .form-group
+              
+                br
+                label.small Add Track
+                input.form-control(type='text' name='songTen')
+                Button(type='submit' class='btn btn-success') Submit
+
+
+
+                Button(type='submit' class='btn btn-primary')
+                   a(href='/home') Index

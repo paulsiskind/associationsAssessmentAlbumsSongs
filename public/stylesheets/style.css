@@ -6,3 +6,17 @@ body {
 a {
   color: #00B7FF;
 }
+
+h2.well{
+  background: url('http://www.redbrick.me/wp-content/uploads/2013/11/velvet.jpg')
+}
+.form-group{
+  width: 60%;
+}
+h1.well{
+  background: url('http://4vector.com/i/free-vector-beautiful-background-patterns-vector_017863_Seamless%20Pattern5.jpg')
+}
+#fender{
+  background: url('http://www.makenmusic.com/blog_v2/wp-content/uploads/2012/11/fender_strat_60relichss.jpg?w=1024');
+  height: 700px;
+}
