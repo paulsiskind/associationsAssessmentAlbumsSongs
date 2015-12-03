@@ -10,7 +10,6 @@ var Album = require('../lib/albums.js');
 var Artist = require('../lib/artists.js');
 var Song = require('../lib/songs.js');
 
-/* GET home page. */
 
 
  router.get('/', function(req, res, next){
@@ -30,11 +29,6 @@ var Song = require('../lib/songs.js');
     res.redirect('/signin');
   });
 
-  // router.get('/home', function(req, res, next){
-  //   var username = req.session.username;
-  //   console.log(username)
-  //   res.render('index', {username: username});
-  // });
 
   router.post('/register', function(req, res, next){
     var hash = bcrypt.hashSync(req.body.password, 12);
@@ -120,17 +114,6 @@ router.get('/songs', function(req, res, next){
   })
 })
 
-// router.get('/home', function(req, res, next){
-//   var username = req.session.user
-//   artist.find({}).then(function(artist){
-//     var id = String(artist._id)
-//     console.log(artist)
-//   albums.find({artistId: id}).then(function(albums){
-//       console.log(albums)
-//     res.render('index', {artists: artists, username: username, albums:albums})
-//   })
-//   })
-// })
 
 router.get('/new', function(req, res, next){
   res.render('new');
@@ -157,48 +140,36 @@ router.get('/:id/addSongs', function(req, res, next){
     var id = String(album._id)
     Song.findId(id).then(function(songs){
       console.log(songs)
-      res.render('addSongs', {username:username, theAlbum: album, song: songs})
+      res.render('addSongs', { username:username, theAlbum: album, song: songs})
     })
   })
 })
 
+router.post('/:id/delete', function(req, res, next) {
+  songs.remove({_id: req.params.id }, function (err, data) {
+    res.redirect('/home');
+  });
+});
+
+
 router.get('/:id/show', function(req,res, next){
-  console.log("text")
   var username = req.session.user;
-  Artist.findOne(req.params.id).then(function(artist){
-    console.log(artist._id, "Minnie")
+   Artist.findOne(req.params.id).then(function(artist){   
     var id = String(artist._id)
       Album.findId(id).then(function(albums){
-        console.log(albums, "Mickey Mouse")
-
           Album.joinAlbumsSongs(albums, function(albums){
-            console.log(albums,  "boooh1")
+      
       res.render('show', {username: username, artist: artist, albums:albums})
     })
     })
   })
 })
 
-
-// router.get('/:id/show', function(req,res, next){
-//   console.log(joinAlbumsSongs)
-//   var username = req.session.user;
-//   Artist.findOne(req.params.id).then(function(artist){
-//     console.log(artist._id, "Minnie")
-//     var id = String(artist._id)
-//     Album.findId(id).then(function(albums){
-//       console.log(albums._id, "Mickey Mouse")
-//        var id = String(albums._id)
-//           Song.findId(id).then(function(songs){
-//             console.log(songs)
-
-//       res.render('show', {username: username, artist: artist, albums:albums, song: songs})
-//     })
-//     })
-//   })
-// })
-
-
+router.post('/:id/deleteAlbums', function(req, res, next) {
+  songs.remove({_id: req.params.id }, function (err, data) {
+    res.redirect('/home');
+  });
+});
 router.get('/:id/addAlbum', function(req, res, next){
   var username = req.session.user
   Artist.findOne(req.params.id).then(function(data){

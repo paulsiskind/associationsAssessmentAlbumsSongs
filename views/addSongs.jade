@@ -4,11 +4,14 @@ block content
 
 
 
-    h1.well= theAlbum.album
+    h1.outline.well= theAlbum.album
 
-     
-    for songs in song
-        p= songs.song
+    h3 Current Track List
+    ol
+     for songs in song
+        li= songs.song 
+            form(action='/'+ songs._id + '/delete', method="post")
+             button(type="submit" class="btn btn-danger") Delete
 
     include error
 

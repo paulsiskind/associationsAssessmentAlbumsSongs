@@ -3,15 +3,17 @@ extends layout
 block content
 
 
-     h1.well The Magical Show Page
+     h1.outline.well The Magical Show Page
 
        
      h2.well= artist.artist
 
-      .col-md-6
+     .col-md-6
          for album in albums
-          h5.well
-             a(href='/'+ album._id +'/addSongs')= album.album
+          h5.clearfix.well
+             a(href='/'+ album._id +'/addSongs')= album.album 
+             form(action='/'+ album._id + '/deleteAlbums', method="post")
+              button.delete(type="submit" class="btn btn-danger") Delete
 
              for song in album.songs
                 p= song.song            
