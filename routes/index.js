@@ -30,11 +30,11 @@ var Song = require('../lib/songs.js');
     res.redirect('/signin');
   });
 
-/*  router.get('/home', function(req, res, next){
-    var username = req.session.username;
-    console.log(username)
-    res.render('index', {username: username});
-  });*/
+  // router.get('/home', function(req, res, next){
+  //   var username = req.session.username;
+  //   console.log(username)
+  //   res.render('index', {username: username});
+  // });
 
   router.post('/register', function(req, res, next){
     var hash = bcrypt.hashSync(req.body.password, 12);
@@ -125,7 +125,7 @@ router.get('/songs', function(req, res, next){
 //   artist.find({}).then(function(artist){
 //     var id = String(artist._id)
 //     console.log(artist)
-//   albums.findk({artistId: id}).then(function(albums){
+//   albums.find({artistId: id}).then(function(albums){
 //       console.log(albums)
 //     res.render('index', {artists: artists, username: username, albums:albums})
 //   })
@@ -161,36 +161,44 @@ router.get('/:id/addSongs', function(req, res, next){
     })
   })
 })
-var joinAlbumsSongs = function(){
-      albums.forEach(function(albums){
-        songs.forEach(function(songs){
-          if(albums._id.toString() === songs.albumId.toString()){
-            console.log(albums, songs, "here")
-            albums.songs = songs
-          }
-        })
-      })
-    return albums
-    } 
 
-router.get('/:id/show', function(req, res, next){
-  var username = req.session.user
+router.get('/:id/show', function(req,res, next){
+  console.log("text")
+  var username = req.session.user;
   Artist.findOne(req.params.id).then(function(artist){
-    console.log(artist)
+    console.log(artist._id, "Minnie")
     var id = String(artist._id)
-    Album.findId(id).then(function(album){
-      console.log(album)
-      var idTwo = String(album._id)
-      console.log(idTwo)
-        Song.findId(idTwo).then(function(song){
-          console.log(joinAlbumsSongs(albums,songs))
-          console.log(song)
-          res.render('show', {username:username, artist: artist, album: album, song: song})
+      Album.findId(id).then(function(albums){
+        console.log(albums, "Mickey Mouse")
+
+          Album.joinAlbumsSongs(albums, function(albums){
+            console.log(albums,  "boooh1")
+      res.render('show', {username: username, artist: artist, albums:albums})
     })
     })
   })
 })
-//Incase it crashes
+
+
+// router.get('/:id/show', function(req,res, next){
+//   console.log(joinAlbumsSongs)
+//   var username = req.session.user;
+//   Artist.findOne(req.params.id).then(function(artist){
+//     console.log(artist._id, "Minnie")
+//     var id = String(artist._id)
+//     Album.findId(id).then(function(albums){
+//       console.log(albums._id, "Mickey Mouse")
+//        var id = String(albums._id)
+//           Song.findId(id).then(function(songs){
+//             console.log(songs)
+
+//       res.render('show', {username: username, artist: artist, albums:albums, song: songs})
+//     })
+//     })
+//   })
+// })
+
+
 router.get('/:id/addAlbum', function(req, res, next){
   var username = req.session.user
   Artist.findOne(req.params.id).then(function(data){

@@ -8,12 +8,13 @@ block content
        
      h2.well= artist.artist
 
-     for albums in album
-      h2.well
-         a(href='/'+ albums._id +'/addSongs')= albums.album
-            for songs in song
-              p= songs.song
-      
+      .col-md-6
+         for album in albums
+          h5.well
+             a(href='/'+ album._id +'/addSongs')= album.album
 
-  
-     
+             for song in album.songs
+                p= song.song            
+
+      
+         
