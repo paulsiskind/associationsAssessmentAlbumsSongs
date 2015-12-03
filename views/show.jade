@@ -2,7 +2,6 @@ extends layout
 
 block content
 
-
      h1.outline.well The Magical Show Page
 
        
@@ -14,9 +13,11 @@ block content
              a(href='/'+ album._id +'/addSongs')= album.album 
              form(action='/'+ album._id + '/deleteAlbums', method="post")
               button.delete(type="submit" class="btn btn-danger") Delete
+             br
+             br
 
              for song in album.songs
-                p= song.song            
-
-      
-         
+                p= song.song 
+             br           
+             button.add(class='btn btn-success')
+              a(href='/'+ album._id +'/addSongs') Add Song

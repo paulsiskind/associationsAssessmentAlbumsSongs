@@ -36,7 +36,7 @@ h1.well{
 .clearfix{
     overflow: auto;
 }
-.delete{
+.delete, .add{
   float: right;
   overflow: auto;
   margin: 0 0 10px 10px;

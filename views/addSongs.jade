@@ -11,7 +11,7 @@ block content
      for songs in song
         li= songs.song 
             form(action='/'+ songs._id + '/delete', method="post")
-             button(type="submit" class="btn btn-danger") Delete
+             button(type="submit" class="btn btn-sm btn-danger") Delete
 
     include error
 
