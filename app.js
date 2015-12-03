@@ -9,6 +9,7 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 require('dotenv').load()
 
+var db = require('monk')(process.env.MONGOLAB_URI ||'localhost/associationSummativeAss')
 //https://git.heroku.com/limitless-savannah-5432.git
 
 var app = express();
