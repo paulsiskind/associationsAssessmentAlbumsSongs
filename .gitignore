@@ -27,4 +27,10 @@ build/Release
 node_modules
 
 # Debug log from npm
+
+
+
+/node_modules
 npm-debug.log
+.DS_Store
+/*.env
