@@ -2,28 +2,29 @@ extends layout
 
 block content
 
+  if(username)
 
-  h1.outline.well Welcome to Your Sweet Music Collection 
+      h1.outline.well Welcome to Your Sweet Music Collection 
 
 
 
-  button(type='submit')
-    a(href='/new') New Artist
-  button(type="submit") 
-    a(href="/songs") Songs
+      button(type='submit')
+        a(href='/new') New Artist
+      button(type="submit") 
+        a(href="/songs") Songs
 
-  table.table.table-striped
-    thead
-       tr
-         th Artist
-         th Album
+      table.table.table-striped
+        thead
+           tr
+             th Artist
+             th Album
 
-    tbody
-      for artist in artists
-        tr
-          td
-            a(href='/'+artist._id+'/show')= artist.artist
-          td
-          td
-            button(type='submit' class='btn btn-success')
-             a(href='/'+ artist._id +'/addAlbum') Add Album
+        tbody
+          for artist in artists
+            tr
+              td
+                a(href='/'+artist._id+'/show')= artist.artist
+              td
+              td
+                button(type='submit' class='btn btn-success')
+                 a(href='/'+ artist._id +'/addAlbum') Add Album

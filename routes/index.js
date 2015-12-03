@@ -116,7 +116,8 @@ router.get('/songs', function(req, res, next){
 
 
 router.get('/new', function(req, res, next){
-  res.render('new');
+  var username = req.session.username;
+  res.render('new', {username:username});
 });
 
 router.post('/', function(req, res, next){
@@ -134,7 +135,8 @@ router.post('/', function(req, res, next){
 })
 
 router.get('/:id/addSongs', function(req, res, next){
-  var username = req.session.user
+  var username = req.session.username
+  console.log(username)
   Album.findOne(req.params.id).then(function(album){
     console.log(album)
     var id = String(album._id)
@@ -153,7 +155,7 @@ router.post('/:id/delete', function(req, res, next) {
 
 
 router.get('/:id/show', function(req,res, next){
-  var username = req.session.user;
+  var username = req.session.username;
    Artist.findOne(req.params.id).then(function(artist){   
     var id = String(artist._id)
       Album.findId(id).then(function(albums){
@@ -171,7 +173,7 @@ router.post('/:id/deleteAlbums', function(req, res, next) {
   });
 });
 router.get('/:id/addAlbum', function(req, res, next){
-  var username = req.session.user
+  var username = req.session.username;
   Artist.findOne(req.params.id).then(function(data){
     res.render('addAlbum', {theArtist: data, username: username})
   })
@@ -210,7 +212,8 @@ router.post('/:id/addSongs', function(req, res, next){
   }
   else{
     songs.insert({albumId: req.params.id,
-                     song: req.body.song}).then(function(){
+                     song: req.body.song
+                   }).then(function(){
     res.redirect('/home')
     
     })

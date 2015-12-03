@@ -1,20 +1,22 @@
 extends layout
 
 block content
- #fender
-  h1 Create New Artist
-  br
-  br
-  include error
-    
+
+  if(username)
+    #fender
+      h1 Create New Artist
+      br
+      br
+      include error
+        
 
 
-  form(action="/", method="post")
-    .from-group
-      label New Artist
-      input.form-control(type="text" name="artist")
-    .form-group
-      br 
-      Button(type='submit' class="btn btn-success") Submit
-      Button(type='submit' class='btn btn-primary')
-        a(href='/home') Home
+      form(action="/", method="post")
+        .from-group
+          label New Artist
+          input.form-control(type="text" name="artist")
+        .form-group
+          br 
+          Button(type='submit' class="btn btn-success") Submit
+          Button(type='submit' class='btn btn-primary')
+            a(href='/home') Home
